@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Module 1 | Local Community Event Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+    /* HEADER BAR */
+    .header-bar {
+      width: 100%;
+      background: #0a192f;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3vw;
+      min-height: 70px;
+      box-sizing: border-box;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid #233554;
+    }
+    .header-title {
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #64ffda;
+      padding: 0.3em 0;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.6em;
+    }
+    .nav-links a {
+      color: #64ffda;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.08em;
+      padding: 0.4em 0.9em;
+      border-radius: 2em;
+      transition: background 0.2s, color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a:focus {
+      background: #233554;
+      color: #fff;
+      outline: none;
+    }
+    /* Section Colors */
+    #home      { background: #1e3a8a; color: #fff; }
+    #events    { background: #3c096c; color: #fff; }
+    #gallery   { background: #e6cc3a; color: #1a1a2e; }
+    #register  { background: #73e7b1; color: #fff; }
+    #feedback  { background: #7b1fa2; color: #fff; }
+    #video     { background: #0d47a1; color: #fff; }
+    #map       { background: #00897b; color: #fff; }
+    #contact   { background: #4a148c; color: #fff; }
+    section {
+      width: 100%;
+      padding: 3em 0;
+      margin: 0;
+      position: relative;
+      border: none;
+      min-height: 320px;
+      box-sizing: border-box;
+    }
+    .section-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+    section + section {
+      margin-top: -1px;
+    }
+    button, input[type="submit"] {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 2px solid #64ffda;
+      border-radius: 2em;
+      padding: 0.7em 2em;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      transition: background 0.18s, color 0.18s, border 0.18s, transform 0.14s;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    button:hover, input[type="submit"]:hover {
+      background: #64ffda;
+      color: #0a192f;
+      transform: scale(1.04);
+    }
+    .highlight {
+      background: #64ffda;
+      color: #0a192f;
+      border-radius: 1em;
+      padding: 0.15em 0.7em;
+      font-weight: bold;
+      margin: 0 0.5em;
+      display: inline-block;
+    }
+    .special-offer {
+      color: #ff6b6b;
+      font-weight: bold;
+      background: rgba(255,255,255,0.9);
+      padding: 0.2em 0.7em;
+      border-radius: 1em;
+      margin-left: 1em;
+      font-size: 1.05em;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+    .gallery-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 1.2em 1em;
+    }
+    .gallery-table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+    .event-img {
+      border: 3px solid #64ffda;
+      border-radius: 0.7em;
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
+      transition: transform 0.16s, filter 0.16s;
+      cursor: pointer;
+      background: #f5faff;
+    }
+    .event-img:hover {
+      transform: scale(1.08);
+      filter: brightness(0.95);
+      border-color: #fff;
+      z-index: 2;
+    }
+    caption {
+      caption-side: top;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #64ffda;
+      margin-bottom: 0.7em;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      background: rgba(255,255,255,0.05);
+      border-radius: 1em;
+      padding: 1.2em 1.5em;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+      margin-top: 1em;
+      margin-bottom: 1em;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    label {
+      font-weight: 500;
+      margin-bottom: 0.25em;
+    }
+    input, select, textarea {
+      padding: 0.7em;
+      border-radius: 1em;
+      border: 1.5px solid #64ffda;
+      font-size: 1em;
+      outline: none;
+      transition: border 0.16s;
+      margin-top: 0.15em;
+      background: rgba(255,255,255,0.9);
+      color: #0a192f;
+    }
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid #fff;
+      background: #fff;
+    }
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+    output {
+      display: block;
+      margin-top: 1em;
+      color: #64ffda;
+      font-weight: bold;
+      font-size: 1.1em;
+      min-height: 1.2em;
+    }
+    #promoVideo {
+      border-radius: 1em;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
+      margin-bottom: 1em;
+      background: #000;
+      width: 100%;
+      max-width: 380px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px solid #64ffda;
+    }
+    #videoMsg {
+      text-align: center;
+      color: #64ffda;
+      font-weight: 500;
+      margin-bottom: 1em;
+    }
+    #location {
+      margin-top: 1em;
+      font-size: 1.07em;
+      color: #64ffda;
+      font-weight: 500;
+    }
+    @media (max-width: 900px) {
+      .section-content { padding: 1em; }
+      .nav-links { gap: 0.7em; }
+      .header-bar { padding: 0 1em; }
+      #promoVideo { max-width: 95vw; }
+      h1 { font-size: 1.3em; padding-left: 1em; }
+    }
+    footer {
+      margin: 0;
+      padding: 0;
+      background: #0a192f;
+      color: #6e64ff;
+      border-top: 2px solid #233554;
+      font-size: 1em;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 56px;
+      width: 100%;
+      padding: 1.1em 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2em;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer-left {
+      z-index: 1;
+      font-size: 1em;
+    }
+    .footer-right {
+      z-index: 1;
+      font-size: 0.97em;
+      font-style: italic;
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <span class="header-title">Module 1</span>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#register">Register</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#video">Invite</a>
+      <a href="#map">Map</a>
+      <a href="#contact">Contact</a>
+      <a href="help.html" target="_blank">Help</a>
+    </nav>
+  </div>
+  <main>
+    <section id="home">
+      <div class="section-content">
+        <div id="welcomeBanner">
+          Welcome, <span class="highlight">Community Member!</span>
+          <span class="special-offer">Special Offer: Free entry for first 50 registrations!</span>
+        </div>
+        <div>
+          <p>Discover and join amazing events in your local community. Register, give feedback, and stay connected!</p>
+        </div>
+      </div>
+    </section>
+    <section id="events">
+      <div class="section-content">
+        <h2>Upcoming Events</h2>
+        <ul>
+          <li><span class="highlight">Spring Fair</span> – June 1, 2025</li>
+          <li><span class="highlight">Charity Run</span> – June 10, 2025</li>
+          <li><span class="highlight">Music Night</span> – June 15, 2025</li>
+        </ul>
+        <div style="margin-top:1em;">
+          <label for="preferredEvent">Set your preferred event type:</label>
+          <select id="preferredEvent">
+            <option value="">Select</option>
+            <option value="fair">Spring Fair</option>
+            <option value="run">Charity Run</option>
+            <option value="music">Music Night</option>
+          </select>
+          <button type="button">Clear Preferences</button>
+        </div>
+      </div>
+    </section>
+    <section id="gallery">
+      <div class="section-content">
+        <h2>Past Community Events Gallery</h2>
+        <table class="gallery-table">
+          <caption>Memorable Moments</caption>
+          <tr>
+            <td><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Spring Fair" title="Spring Fair" class="event-img"></td>
+            <td><img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Charity Run" title="Charity Run" class="event-img"></td>
+            <td><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Music Night" title="Music Night" class="event-img"></td>
+          </tr>
+          <tr>
+            <td><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Art Show" title="Art Show" class="event-img"></td>
+            <td><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Food Festival" title="Food Festival" class="event-img"></td>
+            <td><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="Book Fair" title="Book Fair" class="event-img"></td>
+          </tr>
+        </table>
+        <p style="text-align:center; color:#1a1a2e; margin-top:1em;">
+          <small>Double-click an image to enlarge/shrink it! (Feature disabled in this version)</small>
+        </p>
+      </div>
+    </section>
+    <section id="register">
+      <div class="section-content">
+        <h2>Event Registration</h2>
+        <form id="eventForm" autocomplete="off">
+          <label>Name:
+            <input type="text" name="name" placeholder="Your Name" required autofocus>
+          </label>
+          <label>Email:
+            <input type="email" name="email" placeholder="you@email.com" required>
+          </label>
+          <label>Date:
+            <input type="date" name="date" required>
+          </label>
+          <label>Event Type:
+            <select name="eventType" id="eventType" required>
+              <option value="">Select</option>
+              <option value="fair">Spring Fair</option>
+              <option value="run">Charity Run</option>
+              <option value="music">Music Night</option>
+            </select>
+          </label>
+          <label>Message:
+            <textarea name="message" placeholder="Any comments?"></textarea>
+          </label>
+          <input type="submit" value="Register">
+          <output id="confirmation"></output>
+        </form>
+      </div>
+    </section>
+    <section id="feedback">
+      <div class="section-content">
+        <h2>Event Feedback</h2>
+        <form id="feedbackForm" autocomplete="off">
+          <label>Phone:
+            <input type="tel" id="phone" maxlength="10" placeholder="10-digit number">
+          </label>
+          <label>Event Type:
+            <select id="eventDropdown">
+              <option value="">Select</option>
+              <option value="fair">Spring Fair</option>
+              <option value="run">Charity Run</option>
+              <option value="music">Music Night</option>
+            </select>
+          </label>
+          <span id="fee"></span>
+          <label>Feedback:
+            <textarea id="feedbackText" placeholder="Your feedback..."></textarea>
+            <span id="charCount">0</span> characters
+          </label>
+          <button type="button">Submit Feedback</button>
+        </form>
+      </div>
+    </section>
+    <section id="video">
+      <div class="section-content">
+        <h2>Event Promo Video</h2>
+        <video id="promoVideo" width="320" controls>
+          <source src="videoplayback.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div id="videoMsg"></div>
+      </div>
+    </section>
+    <section id="map">
+      <div class="section-content">
+        <h2>Find Nearby Events</h2>
+        <button>Find Nearby Events</button>
+        <div id="location"></div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="section-content">
+        <h2>Contact the Council</h2>
+        <p>For more information, email us at <a href="mailto:events@citycouncil.gov" style="color:#64ffda;text-decoration:underline;">events@citycouncil.gov</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <span class="footer-left">&copy; 2025 Local City Council</span>
+      <span class="footer-right">Empowering Communities Together</span>
+    </div>
+  </footer>
+</body>
+</html>
