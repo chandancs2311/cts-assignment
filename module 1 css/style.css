@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Roboto', Arial, sans-serif;
+    /* REMOVED: background: #232946 url('img bg.jpg') no-repeat center center fixed; */
+    /* REMOVED: background-size: cover; */
+    
+    /* ADDED for video background */
+    position: relative; /* Essential for correctly positioning the fixed video */
+    overflow: hidden; /* Prevents scrollbars if video dimensions don't perfectly match viewport */
+    color: #fff; /* Ensure main text is readable over the darker video */
+}
+
+/* NEW: Styles for the background video */
+.background-video {
+    position: fixed; /* Keep the video fixed in the background */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers the entire screen, cropping if necessary */
+    z-index: -1; /* Puts the video behind all other content */
+    filter: brightness(0.7); /* Optional: Darkens the video slightly for better text contrast */
+}
+
+
+.header-bar {
+    width: 100%;
+    background: rgba(35,41,70,0.98);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3vw;
+    min-height: 70px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Ensure header is above the video */
+    border-bottom: 2px solid #f25f5c;
+}
+.header-title {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    color: #f25f5c;
+    white-space: nowrap;
+}
+.nav-links {
+    display: flex;
+    gap: 1.6em;
+}
+.nav-links a {
+    color: #f25f5c;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.08em;
+    padding: 0.4em 0.9em;
+    border-radius: 2em;
+    transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover, .nav-links a:focus {
+    background: #232946;
+    color: #fff;
+    outline: none;
+}
+
+main {
+    position: relative;
+    z-index: 1; /* Ensure main content is above the video */
+    max-width: 950px;
+    margin: 2em auto 0 auto;
+    /* opacity: 4; - Invalid CSS value, if you want transparency use rgba on background */
+    background: rgba(35, 41, 70, 0.75); /* Added a semi-transparent background for readability over video */
+    color: #fff; /* Ensure text within main is visible */
+    border-radius: 1.2em;
+    box-shadow: 0 8px 32px rgba(35,41,70,0.12);
+    padding: 2em 2.5em;
+}
+
+.section-header {
+    background: linear-gradient(90deg, #f25f5c, #232946 80%);
+    color: #fff;
+    padding: 1em 2em;
+    border-radius: 0.7em;
+    font-size: 2em;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+/* Main image: fixed size, centered, never stretched */
+.gallery-main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0 1em 0;
+}
+.gallery-main {
+    width: 420px;
+    height: 240px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1em;
+    box-shadow: 0 8px 32px rgba(35,41,70,0.18);
+    border: 4px solid #f25f5c;
+    background: #fff; /* Still a solid background for the image itself */
+    display: block;
+    max-width: 100%;
+    max-height: 60vw;
+}
+
+/* Gallery thumbnails using gallery class (W3Schools style) */
+.gallery-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2em;
+    justify-content: center;
+}
+.gallery {
+    border: 1px solid #ccc;
+    width: 160px;
+    border-radius: 0.7em;
+    background: #fff; /* Still a solid background for thumbnails */
+    box-shadow: 0 2px 8px rgba(35,41,70,0.07);
+    transition: border 0.2s;
+    text-align: center;
+}
+.gallery:hover {
+    border: 1.5px solid #f25f5c;
+}
+.gallery img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 0.7em 0.7em 0 0;
+    display: block;
+}
+.desc {
+    padding: 10px 0;
+    font-size: 1em;
+    color: #232946; /* Text color for gallery item descriptions */
+    background: #f8fafc;
+    border-radius: 0 0 0.7em 0.7em;
+}
+
+/* Form alignment and style */
+.eventCard {
+    background: #fff; /* Solid white background for the form card */
+    border: 2px solid #f25f5c;
+    border-radius: 1em;
+    margin: 2em auto;
+    padding: 2em 2em 1.5em 2em;
+    box-shadow: 0 2px 8px 0 rgba(242,95,92,0.10);
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    color: #232946; /* Ensure form text is visible */
+}
+.eventCard label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #232946;
+    margin-bottom: 0.2em;
+    font-size: 1em;
+}
+.eventCard input,
+.eventCard select,
+.eventCard textarea {
+    margin-top: 0.3em;
+    padding: 0.7em 1em;
+    border-radius: 0.7em;
+    border: 1.5px solid #f25f5c;
+    font-size: 1em;
+    font-family: inherit;
+    background: #f8fafc;
+    transition: border 0.16s, background 0.16s;
+    color: #232946; /* Ensure input text is visible */
+}
+.eventCard input:focus,
+.eventCard select:focus,
+.eventCard textarea:focus {
+    border: 2px solid #232946;
+    background: #715280;
+    color: #fff; /* Added to make text readable if background becomes dark */
+    outline: none;
+}
+.cta-button {
+    background-color: #f25f5c;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    padding: 0.7em 2em;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.14s;
+    margin-top: 1em;
+    align-self: flex-end;
+}
+.cta-button:hover {
+    background-color: #232946;
+    color: #f25f5c;
+    transform: scale(1.06);
+}
+
+@media (max-width: 700px) {
+    main { padding: 1em; }
+    .gallery-main { width: 95vw; height: 38vw; min-height: 120px; }
+    .gallery-thumbs { gap: 0.5em; }
+    .section-header { font-size: 1.3em; }
+    .eventCard { padding: 1em; }
+}
+
+footer {
+    margin: 2em 0 0 0;
+    background: #232946;
+    color: #fff;
+    border-top: 2px solid #f25f5c;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 56px;
+    width: 100%;
+    padding: 1.1em 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1; /* Ensure footer is above the video */
+}
+.footer-left {
+    z-index: 1;
+    font-size: 1em;
+    margin-left: 2em;
+}
+.footer-right {
+    z-index: 1;
+    font-size: 0.97em;
+    font-style: italic;
+    opacity: 0.92;
+    margin-right: 2em;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 1 | Local Community Event Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay loop muted playsinline class="background-video">
+        <source src="videoplayback.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="header-bar">
+        <span class="header-title">Module 1</span>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#register">Register</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="help.html" target="_blank">Help</a>
+        </nav>
+    </div>
+
+    <main>
+        <section id="home">
+            <h2 class="section-header">Welcome</h2>
+            <p>
+                Discover and join amazing events in your local community. Register, give feedback, and stay connected!
+            </p>
+        </section>
+
+        <section id="gallery">
+            <h2 class="section-header">Event Gallery</h2>
+            <div class="gallery-main-wrapper">
+                <img src="main img.jpg" alt="Main Event" class="gallery-main">
+            </div>
+            <div class="gallery-thumbs">
+                <div class="gallery">
+                    <a href="art img.jpg" target="_blank">
+                        <img src="art img.jpg" alt="Art Show">
+                    </a>
+                    <div class="desc">Art Show</div>
+                </div>
+                <div class="gallery">
+                    <a href="books img.jpg" target="_blank">
+                        <img src="books img.jpg" alt="Book Fair">
+                    </a>
+                    <div class="desc">Book Fair</div>
+                </div>
+                <div class="gallery">
+                    <a href="food img.jpg" target="_blank">
+                        <img src="food img.jpg" alt="Food Festival">
+                    </a>
+                    <div class="desc">Food Festival</div>
+                </div>
+                <div class="gallery">
+                    <a href="music img.jpg" target="_blank">
+                        <img src="music img.jpg" alt="Music Night">
+                    </a>
+                    <div class="desc">Music Night</div>
+                </div>
+                <div class="gallery">
+                    <a href="spring img.jpg" target="_blank">
+                        <img src="spring img.jpg" alt="Spring Fair">
+                    </a>
+                    <div class="desc">Spring Fair</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="register">
+            <h2 class="section-header">Register for an Event</h2>
+            <form class="eventCard">
+                <label>Name:
+                    <input type="text" name="name" placeholder="Your Name" required autofocus>
+                </label>
+                <label>Email:
+                    <input type="email" name="email" placeholder="you@email.com" required>
+                </label>
+                <label>Date:
+                    <input type="date" name="date" required>
+                </label>
+                <label>Event Type:
+                    <select name="eventType" required>
+                        <option value="">Select</option>
+                        <option value="fair">Spring Fair</option>
+                        <option value="run">Charity Run</option>
+                        <option value="music">Music Night</option>
+                    </select>
+                </label>
+                <label>Message:
+                    <textarea name="message" placeholder="Any comments?"></textarea>
+                </label>
+                <input type="submit" class="cta-button" value="Register">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <span class="footer-left">&copy; 2025 Local City Council</span>
+        <span class="footer-right">Empowering Communities Together</span>
+    </footer>
+</body>
+</html>
